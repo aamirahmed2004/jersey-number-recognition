@@ -1,0 +1,3 @@
+[submodule "replicating_results/jersey-number-pipeline"]
+	path = replicating_results/jersey-number-pipeline
+	url = https://github.com/m-iDev-0792/jersey-number-pipeline.git
