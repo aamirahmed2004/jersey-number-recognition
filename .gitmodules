@@ -1,3 +1,6 @@
 [submodule "replicating_results/jersey-number-pipeline"]
 	path = replicating_results/jersey-number-pipeline
 	url = https://github.com/m-iDev-0792/jersey-number-pipeline.git
+[submodule "tests/sam2-tests"]
+	path = tests/sam2-tests
+	url = https://github.com/aamirahmed2004/sam2-tests.git
