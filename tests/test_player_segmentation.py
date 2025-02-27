@@ -19,7 +19,7 @@ import torch
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
-from sam2.build_sam import build_sam2_video_predictor 
+from sam2.build_sam import build_sam2_video_predictor # move this file into cloned sam2 repo to resolve this import error
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
