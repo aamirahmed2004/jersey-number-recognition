@@ -1,0 +1,3 @@
+# Don't need this now, since sam2-tests is now a separate repo, included as a submodule.
+# tests/sam2/*
+# !tests/sam2/test_player_segmentation.py
