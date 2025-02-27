@@ -4,6 +4,16 @@ This repository contains the code and resources used to tackle the **SoccerNet J
 
 ---
 
+## Team members
+
+- [Zhenbang He](https://github.com/m-iDev-0792)
+- [Laura Quiroga](https://github.com/Lauraquiroga)
+- [Syed Aamir Ahmed](https://github.com/aamirahmed2004)
+- [Qianyu (Grace) Shang](https://github.com/GorgeousGrace)
+- [Pratheek Balani](https://github.com/prateek-balani)
+
+---
+
 ## 📁 Repository Structure  
 
 - `/docs`: contains documentation for project development, including a progress report, and a list of useful references.
