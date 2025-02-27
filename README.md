@@ -15,3 +15,9 @@ This repository contains the code and resources used to tackle the **SoccerNet J
 They are essentially like a link to the original repo, frozen at the latest commit at the time of adding as a submodule. To add a submodule, use this command:
 
 `git submodule add <repo_link> <path_to_where_it_goes>`
+
+To update a submodule to a newer commit, use this command:
+
+`git submodule update --remote`
+
+**Reasoning for using submodules:** to keep the directory structure clean, and to allow us to experiment with different approaches that may require cloning other repos or may not be related to the final pipeline, without dependency issues.
