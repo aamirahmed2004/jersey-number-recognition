@@ -1,3 +1,19 @@
+"""
+This code is adapted from the demo notebooks in the original sam2 repo, as well as tutorial at https://www.youtube.com/watch?v=Mf5w-cr2T8U. You can follow instructions there but here is a summary.
+
+If you want to run run this code, you need to have the following installed: CUDA Toolkit 12.4 or above, PyTorch, matplotlib. 
+Make sure CUDA Toolkit is added to the path. I believe you also need to install Visual Studio for the C/C++ dev kit for Windows that comes with it, which is needed to compile some CUDA code. A virtual environment is recommended for the other dependencies.
+
+First, clone https://github.com/facebookresearch/sam2.git into /tests, which should create a folder named /sam2. Move this Python file into that folder (you cannot run this from where this file currently is, because the researches raise a RuntimeError when you do so, since the repo is named "sam2" and the folder inside containing the package is also called "sam2" which might confuse path resolution).
+
+Second, ensure that you download sam2.1_heira_large.pt from 
+https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_large.pt and place it in sam2/checkpoints/
+
+Third, run "pip install -e ." (inside the sam2 repo)
+
+Lastly, uncomment the call to display_annotation_frame() to see if the setup is complete
+"""
+
 import os
 import torch 
 import numpy as np
@@ -113,7 +129,7 @@ frame_names = [
 frame_names.sort(key=lambda p: int(os.path.splitext(p)[0]))
 
 # Don't need to display initial frame after we choose the points 
-display_initial_frame(frames_dir, frame_names)
+# display_initial_frame(frames_dir, frame_names)
 
 inference_state = predictor.init_state(video_path=frames_dir)
 predictor.reset_state(inference_state)
@@ -132,7 +148,8 @@ _, out_obj_ids, out_mask_logits = predictor.add_new_points(
     labels = labels
 )
 
-display_annotation_frame(frames_dir, frame_names, ann_frame_idx, points, labels, out_mask_logits, out_obj_ids)
+# This sanity check was only needed when setting up the code
+# display_annotation_frame(frames_dir, frame_names, ann_frame_idx, points, labels, out_mask_logits, out_obj_ids)
 
 video_segments = {} 
 for out_frame_idx , out_obj_ids, out_mask_logits in predictor.propagate_in_video(inference_state):
@@ -143,13 +160,16 @@ for out_frame_idx , out_obj_ids, out_mask_logits in predictor.propagate_in_video
 
 save_processed_images(frames_dir, frame_names, video_segments, frame_stride=1)
 
-"""For testing bbox: here is a manually annotated bbox for frame 0, to pass into SAM2. This will simulate getting an automatic bounding box with the first player
+"""
+TODO: 
+    1) use predictor.add_new_points_or_box(), and see if the results using a bounding box as prompt are as good as using 2 points as a prompt (since bounding boxes can be automatically extracted from a lightweight model like YOLO). 
+    2) if the output masks are good, then see if YOLOv11 generates good bounding boxes for a few sample tracklets
+
+For testing bbox: here is a manually annotated bbox for frame 0, to pass into SAM2. This will simulate getting an automatic bounding box with the first player
     "x": "27.55",
     "y": "69.90",
     "width": "42.04",
     "height": "127.14"
 
-TODO: 
-    1) use predictor.add_new_points_or_box(), and see if the results with bounding box are as good as using 2 points. 
-    2) if the output masks are good, then see if YOLOv11 generates good bounding boxes for a few sample tracklets
+    3) Figure out what format sam2 expects bounding boxes to be in
 """
