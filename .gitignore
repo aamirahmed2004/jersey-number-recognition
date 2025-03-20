@@ -2,3 +2,4 @@
 # tests/sam2/*
 # !tests/sam2/test_player_segmentation.py
 .DS_Store
+*.pth
